@@ -44,4 +44,12 @@ Route::prefix('/admin/categories')->group(function () {
         'as'=> 'categories.delete',
         'uses' => 'categoryController@delete'
     ]);
+    Route::post('/search',[
+        'as'=> 'categories.search',
+        'uses' => 'categoryController@search'
+    ]);
+    Route::post('/autocomplete_search',[
+        'as'=> 'categories.autocomplete_search',
+        'uses' => 'categoryController@autocomplete_search'
+    ]);
 });
