@@ -49,4 +49,24 @@ class categoryController extends Controller
         $this->category->find($id)->delete();
         return redirect()->route('categories.index');
     }
+
+    public function search(Request $request){
+        $searches = $this->category->where('name', 'LIKE', "%$request->search%")->paginate(5);
+        return view('admin.category.search', compact('searches'));
+    }
+
+    public function autocomplete_search(Request $request){
+        $data = $request->all();
+
+        if ($data['query']){
+            $categories = $this->category->where('name', 'LIKE', '%'.$data['query'].'%')->get();
+            $output = '<ul class="dropdown-menu" style="display: block; position: absolute; margin-left: 15px;">';
+            foreach ($categories as $key => $val){
+                $output .='<li class="search_ajax_category_li" style=""><a href="#"  style=" color: black;">'.$val->name.'</a></li>';
+            }
+            $output .= '</ul>';
+            echo $output;
+        }
+
+    }
 }

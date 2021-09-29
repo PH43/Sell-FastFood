@@ -4,14 +4,10 @@
     <title>Danh mục</title>
 @endsection
 
-@section('css')
-
-@endsection
-
 @section('content')
 
     <div class="content-wrapper">
-    @include('admin.partials.header', [ 'key' => 'Trang', 'name' => 'danh mục'])
+    @include('admin.partials.header', [ 'key' => 'Trang', 'name' => 'Tìm kiếm'])
     <!-- Main content -->
         <div class="content">
             <div class="container-fluid">
@@ -20,8 +16,6 @@
                         <a href="{{ route('categories.create') }}" class="btn btn-success float-right m-1">Thêm</a>
                     </div>
                     @include('admin.partials.search_category')
-
-
                     <div class="col-md-12">
                         <table class="table">
                             <thead>
@@ -33,13 +27,13 @@
                             </thead>
                             <tbody>
 
-                            @foreach($categories as $category)
+                            @foreach($searches as $search)
                                 <tr>
-                                    <th scope="row">{{ $category->id }}</th>
-                                    <td>{{ $category->name }}</td>
-                                    <td><a href="{{ route('categories.edit', ['id' => $category->id]) }}"
+                                    <th scope="row">{{ $search->id }}</th>
+                                    <td>{{ $search->name }}</td>
+                                    <td><a href="{{ route('categories.edit', ['id' => $search->id]) }}"
                                            class="btn btn-secondary">Cập nhật</a>
-                                    <a href="{{ route('categories.delete', ['id' => $category->id]) }}"
+                                        <a href="{{ route('categories.delete', ['id' => $search->id]) }}"
                                            class="btn btn-danger">Xóa</a></td>
                                 </tr>
                             @endforeach
@@ -48,12 +42,13 @@
                         </table>
                     </div>
                     <div class="col-md-12">
-                        {{ $categories->links() }}
+                        {{ $searches->links() }}
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 @endsection
 @section('js')
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
@@ -83,5 +78,4 @@
         });
     </script>
 @endsection
-
 
