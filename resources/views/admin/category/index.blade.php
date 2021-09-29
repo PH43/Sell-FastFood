@@ -58,7 +58,6 @@
 @section('js')
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
 
-
     <script type="text/javascript">
         $('#keywords').keyup(function () {
             var query = $(this).val();
