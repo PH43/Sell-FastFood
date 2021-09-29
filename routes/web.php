@@ -53,3 +53,11 @@ Route::prefix('/admin/categories')->group(function () {
         'uses' => 'categoryController@autocomplete_search'
     ]);
 });
+
+//trang product admin
+Route::prefix('/admin/products')->group(function () {
+    Route::get('/',[
+        'as'=> 'products.index',
+        'uses' => 'productController@index'
+    ]);
+});
