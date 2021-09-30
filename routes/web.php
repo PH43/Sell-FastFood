@@ -60,4 +60,24 @@ Route::prefix('/admin/products')->group(function () {
         'as'=> 'products.index',
         'uses' => 'productController@index'
     ]);
+    Route::get('/create',[
+        'as'=> 'products.create',
+        'uses' => 'productController@create'
+    ]);
+    Route::post('/store',[
+        'as'=> 'products.store',
+        'uses' => 'productController@store'
+    ]);
+    Route::get('/edit/{id}',[
+        'as'=> 'products.edit',
+        'uses' => 'productController@edit'
+    ]);
+    Route::post('/update/{id}',[
+        'as'=> 'products.update',
+        'uses' => 'productController@update'
+    ]);
+    Route::get('/delete/{id}',[
+        'as'=> 'products.delete',
+        'uses' => 'productController@delete'
+    ]);
 });

@@ -39,7 +39,7 @@ class categoryController extends Controller
     }
 
     public function update($id, EditCategoryRequest $request){
-        $this->category->find($id)->update([
+          $this->category->find($id)->update([
             'name' => $request->name
         ]);
         return redirect()->route('categories.index');
