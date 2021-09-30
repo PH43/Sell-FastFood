@@ -59,7 +59,7 @@
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
 
     <script type="text/javascript">
-        $('#keywords').keyup(function () {
+      $('#keywords').keyup(function () {
             var query = $(this).val();
             if (query != ''){
                 var _token = $('input[name="_token"]').val();
