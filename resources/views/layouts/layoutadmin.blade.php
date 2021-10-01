@@ -22,6 +22,7 @@
 <div class="wrapper">
 
     @include('admin.partials.sidebar')
+
     @yield('content')
 </div>
 

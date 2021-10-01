@@ -7,7 +7,7 @@
 @section('content')
 
     <div class="content-wrapper">
-    @include('admin.partials.header', [ 'key' => 'Trang thêm', 'name' => 'sản phẩm'])
+    @include('admin.partials.header', [ 'key' => 'Trang cập nhật', 'name' => 'sản phẩm'])
     <!-- Main content -->
         <div class="content">
             <div class="container-fluid">
@@ -46,20 +46,29 @@
                             <div class="form-group">
                                 <label >Ảnh đại diện</label>
                                 <input type="file" class="form-control-file" name="feature_image_path">
-                                <img src="{{ $product->feature_image_path }}" style="width: 120px; height: 170px; object-fit:cover" alt="">
+                                <div>
+                                    <p style="margin-top: 10px">{{ $product->feature_image_name }}</p>
+                                    <img src="{{ $product->feature_image_path }}" style="width: 120px; height: 170px; object-fit:cover" alt="">
+                                </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" >
                                 <label >Ảnh chi tiết</label>
                                 <input type="file" class="form-control-file" multiple name="image_path[]">
+                                <div style="display: flex">
                                 @foreach($product->images as $product_multiple_images)
-                                    <img src="{{ $product_multiple_images->image_path }}" style="width: 120px; height: 170px; object-fit:cover" alt="">
+                                    <div style="margin: 10px">
+                                        <p style="margin-top: 10px">{{ $product_multiple_images->image_name }}</p>
+                                        <img src="{{ $product_multiple_images->image_path }}" style="width: 120px; height: 170px; object-fit:cover" alt="">
+                                    </div>
+
                                 @endforeach
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label >Mô tả sản phẩm</label>
                                 <textarea class="form-control tinymce_editor_content_product" name="contents" rows="6">{{ $product->content }}</textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary">Thêm</button>
+                            <button type="submit" class="btn btn-primary">Cập nhật</button>
                         </form>
                     </div>
                 </div>

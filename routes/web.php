@@ -80,4 +80,8 @@ Route::prefix('/admin/products')->group(function () {
         'as'=> 'products.delete',
         'uses' => 'productController@delete'
     ]);
+    Route::post('/search',[
+        'as'=> 'products.search',
+        'uses' => 'productController@search'
+    ]);
 });
