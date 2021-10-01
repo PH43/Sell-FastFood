@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Http\Requests\AddProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 use App\Product;
 use App\ProductImage;
 use Illuminate\Http\Request;
@@ -21,8 +23,9 @@ class productController extends Controller
     }
 
     public function index(){
+        $categories = $this->category->get();
         $products = $this->product->latest()->paginate(5);
-        return view('admin.product.index', compact('products'));
+        return view('admin.product.index', compact('products','categories'));
     }
 
     public function create(){
@@ -30,7 +33,7 @@ class productController extends Controller
         return view('admin.product.add', compact('categories'));
     }
 
-    public function store(Request $request){
+    public function store(AddProductRequest $request){
 
         $dataProduct = [
             'name' => $request->name,
@@ -92,7 +95,7 @@ class productController extends Controller
         return view('admin.product.edit', compact('categories', 'product'));
     }
 
-    public function update($id, Request $request){
+    public function update($id, UpdateProductRequest $request){
 
         $dataProductUpdate = [
             'name' => $request->name,
@@ -152,5 +155,19 @@ class productController extends Controller
     public function delete($id){
         $this->product->find($id)->delete();
         return redirect()->route('products.index');
+    }
+
+    public function search(Request $request){
+        $categories = $this->category->get();
+        $query = $this->product->query();
+        if (!empty($request->search)){
+            $query->where('name', 'LIKE', '%' . $request->search . '%');
+        }if (!empty($request->category_id)){
+            $query->where('category_id', $request->category_id);
+        }
+
+        $products = $query->paginate(5);
+        return view('admin.product.search', compact('products','categories'));
+
     }
 }

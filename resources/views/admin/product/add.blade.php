@@ -39,15 +39,24 @@
                             </div>
                             <div class="form-group">
                                 <label >Ảnh đại diện</label>
-                                <input type="file" class="form-control-file" name="feature_image_path">
+                                <input type="file" class="form-control-file @error('feature_image_path') is-invalid @enderror" name="feature_image_path">
+                                @error('feature_image_path')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label >Ảnh chi tiết</label>
-                                <input type="file" class="form-control-file" multiple name="image_path[]">
+                                <input type="file" class="form-control-file @error('image_path') is-invalid @enderror" multiple name="image_path[]">
+                                @error('image_path')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label >Mô tả sản phẩm</label>
-                                <textarea class="form-control tinymce_editor_content_product" name="contents" rows="6"></textarea>
+                                <textarea class="form-control tinymce_editor_content_product @error('contents') is-invalid @enderror" name="contents" rows="6"></textarea>
+                                @error('contents')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <button type="submit" class="btn btn-primary">Thêm</button>
                         </form>
