@@ -10,8 +10,11 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
 
-        <div class="info">
-            <a href="#" class="d-block" style="padding-left: 30px">Admin 1</a>
+        <div class="info" style="display: flex">
+            @if(auth()->check())
+                <a href="#" class="d-block" style="padding-left: 30px">{{ auth()->user()->name }}</a>
+                <a href="{{ route('admins.log_out') }}" style="margin-left: 20px">Đăng xuất</a>
+            @endif
         </div>
     </div>
 
@@ -34,6 +37,14 @@
                     <i class="nav-icon fas fa-th"></i>
                     <p>
                         Sản phẩm
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('users.index') }}" class="nav-link">
+                    <i class="nav-icon fas fa-th"></i>
+                    <p>
+                        Tài khoản
                     </p>
                 </a>
             </li>

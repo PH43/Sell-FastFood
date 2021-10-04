@@ -24,7 +24,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Giá</label>
-                                <input type="text" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ old('price') }}" placeholder="Nhập tên danh mục">
+                                <input type="text" class="form-control @error('price') is-invalid @enderror" id="auto_format_price" name="price" value="{{ old('price') }}" placeholder="Nhập tên danh mục">
                                 @error('price')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror

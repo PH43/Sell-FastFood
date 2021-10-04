@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class EditCategoryRequest extends FormRequest
 {
@@ -24,7 +25,7 @@ class EditCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:20|min:2'
+            'name' => 'required|max:20|min:2|unique:categories',
         ];
     }
 
