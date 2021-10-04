@@ -15,9 +15,32 @@ Route::get('/', function () {
     return view('welcome');
 });
 // trang chu admin
-Route::get('/admin', function () {
-    return view('admin.home');
-});
+//Route::get('/admin', function () {
+//        return view('admin.home');
+//});
+
+Route::get('/admin', 'AdminController@index');
+
+Route::get('/login_admin', [
+    'as'=> 'admins.admin_login',
+    'uses' => 'AdminController@login_admin']);
+Route::post('/', [
+        'as'=> 'admins.post_login',
+        'uses' => 'AdminController@post_login'
+    ]);
+Route::get('/log_out', [
+    'as'=> 'admins.log_out',
+    'uses' => 'AdminController@log_out'
+]);
+Route::get('/register', [
+    'as'=> 'admins.show_form_register',
+    'uses' => 'AdminController@show_form_register'
+]);
+Route::post('/post_register', [
+    'as'=> 'admins.register',
+    'uses' => 'AdminController@register'
+]);
+
 // trang category admin
 Route::prefix('/admin/categories')->group(function () {
     Route::get('/',[
@@ -83,5 +106,33 @@ Route::prefix('/admin/products')->group(function () {
     Route::post('/search',[
         'as'=> 'products.search',
         'uses' => 'productController@search'
+    ]);
+});
+
+//trang quan ly user
+Route::prefix('/admin/user')->group(function () {
+    Route::get('/',[
+        'as'=> 'users.index',
+        'uses' => 'userAdminController@index'
+    ]);
+    Route::get('/create',[
+        'as'=> 'users.create',
+        'uses' => 'userAdminController@create'
+    ]);
+    Route::post('/store',[
+        'as'=> 'users.store',
+        'uses' => 'userAdminController@store'
+    ]);
+    Route::get('/edit/{id}',[
+        'as'=> 'users.edit',
+        'uses' => 'userAdminController@edit'
+    ]);
+    Route::post('/update/{id}',[
+        'as'=> 'users.update',
+        'uses' => 'userAdminController@update'
+    ]);
+    Route::get('/delete/{id}',[
+        'as'=> 'users.delete',
+        'uses' => 'userAdminController@delete'
     ]);
 });

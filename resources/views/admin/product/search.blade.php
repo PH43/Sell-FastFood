@@ -25,7 +25,7 @@
                             <div style="display: flex; ">
                                 <div class="form-group" >
                                     <label>Nhập tên</label>
-                                    <input type="text" class="form-control" style="width: 300px;" name="search" id="keywords"
+                                    <input type="text" class="form-control" style="width: 300px;" value="{{ $value_search }}" name="search" id="keywords"
                                            placeholder="Nhập tên sản phẩm cần tìm">
                                 </div>
                                 <div class="form-group" style="width: 170px; margin-left: 10px; margin-right: 10px">
@@ -34,6 +34,11 @@
                                         <option value="">Chọn danh mục</option>
                                         @foreach( $categories as $category)
                                             <option
+                                                <?php
+                                                if ($value_category_id == $category->id){
+                                                    echo 'selected';
+                                                }
+                                                ?>
                                                 value="{{  $category->id }}">{{  $category->name }}</option>
                                         @endforeach
                                     </select>

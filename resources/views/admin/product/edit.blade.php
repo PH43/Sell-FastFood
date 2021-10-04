@@ -24,7 +24,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Giá</label>
-                                <input type="text" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ $product->price }}" placeholder="Nhập tên danh mục">
+                                <input type="text" class="form-control @error('price') is-invalid @enderror" id="auto_format_price" name="price" value="{{ $product->price }}" placeholder="Nhập tên danh mục">
                                 @error('price')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
@@ -80,4 +80,12 @@
 @section('js')
     <script src="{{ asset('js/add_product.js') }}"></script>
     <script src="https://cdn.tiny.cloud/1/7i193hzfv2r8tp3eqbkffrig8kbdr8rg5pqpvcls77ns60ux/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+{{--    <script src="https://cdn.jsdelivr.net/npm/autonumeric@4.5.4"></script>--}}
+{{--    <script>--}}
+{{--        new AutoNumeric('#auto_format_price', {--}}
+{{--            decimalPlaces : '0',--}}
+{{--            decimalCharacter : ',',--}}
+{{--            digitGroupSeparator : '.',--}}
+{{--        });--}}
+{{--    </script>--}}
 @endsection
