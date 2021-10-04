@@ -39,8 +39,9 @@
                                     <td>{{ $category->name }}</td>
                                     <td><a href="{{ route('categories.edit', ['id' => $category->id]) }}"
                                            class="btn btn-secondary">Cập nhật</a>
-                                    <a href="{{ route('categories.delete', ['id' => $category->id]) }}"
-                                           class="btn btn-danger">Xóa</a></td>
+                                    <a href=""
+                                       data-url="{{ route('categories.delete', ['id' => $category->id]) }}"
+                                           class="btn btn-danger confirm_delete">Xóa</a></td>
                                 </tr>
                             @endforeach
 
@@ -57,7 +58,8 @@
 @endsection
 @section('js')
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
-
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('js/confirm_delete_category.js') }}"></script>
     <script type="text/javascript">
       $('#keywords').keyup(function () {
             var query = $(this).val();
