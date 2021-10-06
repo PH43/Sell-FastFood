@@ -20,8 +20,7 @@
                     </div>
 
                     <div class="col-md-12  m-1">
-                        <form action="{{ route('products.search') }}" autocomplete="off" method="post">
-                            @csrf
+                        <form action="{{ url('/admin/products/search') }}" autocomplete="off" method="get">
                             <div style="display: flex; ">
                                 <div class="form-group" >
                                     <label>Nhập tên</label>

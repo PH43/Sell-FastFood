@@ -12,19 +12,9 @@
 */
 
 Route::get('/','HomeController@index');
-// trang chu admin
-<<<<<<< HEAD
-Route::get('/test',function(){
-    return view('test');
-});
-Route::get('/admin', function () {
-    return view('admin.home');
-});
-=======
-//Route::get('/admin', function () {
-//        return view('admin.home');
-//});
 
+
+// trang chu admin
 Route::get('/admin', 'AdminController@index');
 
 Route::get('/login_admin', [
@@ -42,12 +32,12 @@ Route::get('/register', [
     'as'=> 'admins.show_form_register',
     'uses' => 'AdminController@show_form_register'
 ]);
-Route::post('/post_register', [
+Route::get('/post_register', [
     'as'=> 'admins.register',
     'uses' => 'AdminController@register'
 ]);
 
->>>>>>> 489d8d09304ced9313774aaf5d6de7a4076f47c0
+
 // trang category admin
 Route::prefix('/admin/categories')->group(function () {
     Route::get('/',[
@@ -74,11 +64,11 @@ Route::prefix('/admin/categories')->group(function () {
         'as'=> 'categories.delete',
         'uses' => 'categoryController@delete'
     ]);
-    Route::post('/search',[
+    Route::get('/search',[
         'as'=> 'categories.search',
         'uses' => 'categoryController@search'
     ]);
-    Route::post('/autocomplete_search',[
+    Route::get('/autocomplete_search',[
         'as'=> 'categories.autocomplete_search',
         'uses' => 'categoryController@autocomplete_search'
     ]);
@@ -110,7 +100,7 @@ Route::prefix('/admin/products')->group(function () {
         'as'=> 'products.delete',
         'uses' => 'productController@delete'
     ]);
-    Route::post('/search',[
+    Route::get('/search',[
         'as'=> 'products.search',
         'uses' => 'productController@search'
     ]);
@@ -141,5 +131,26 @@ Route::prefix('/admin/user')->group(function () {
     Route::get('/delete/{id}',[
         'as'=> 'users.delete',
         'uses' => 'userAdminController@delete'
+    ]);
+    Route::post('/update/{id}',[
+        'as'=> 'users.update',
+        'uses' => 'userAdminController@update'
+    ]);
+    Route::get('/search',[
+        'as'=> 'users.search',
+        'uses' => 'userAdminController@search'
+    ]);
+
+});
+
+//trang phan quyen
+Route::prefix('/admin/roles')->group(function () {
+    Route::get('/',[
+        'as'=> 'roles.index',
+        'uses' => 'roleAdminController@index'
+    ]);
+    Route::get('/edit/{id}',[
+        'as'=> 'roles.edit',
+        'uses' => 'roleAdminController@edit'
     ]);
 });

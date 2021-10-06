@@ -22,28 +22,28 @@
                         <form method="post" action="{{ route('users.store') }}">
                             @csrf
                             <div class="form-group">
-                                <label>Email</label>
+                                <label>Email</label><span style="color: red"> *</span>
                                 <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Nhập tên ">
                                 @error('email')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label>Mật khẩu</label>
+                                <label>Mật khẩu</label><span style="color: red"> *</span>
                                 <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}" placeholder="Nhập email">
                                 @error('password')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label>Tên</label>
+                                <label>Tên</label><span style="color: red"> *</span>
                                 <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="Nhập mật khẩu">
                                 @error('name')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label>Chọn vai trò</label>
+                                <label>Chọn vai trò</label><span style="color: red"> *</span>
                                 <select class="form-control select2_role @error('role_id') is-invalid @enderror" name="role_id[]" multiple="multiple">
                                     @foreach( $roles as $role)
                                         <option value="{{ $role->id }}">{{ $role->name }}</option>
@@ -54,14 +54,14 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label>Địa chỉ</label>
+                                <label>Địa chỉ</label><span style="color: red"> *</span>
                                 <input type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" placeholder="Nhập Địa chỉ">
                                 @error('address')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label>Số điện thoại</label>
+                                <label>Số điện thoại</label><span style="color: red"> *</span>
                                 <input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" placeholder="Nhập Số điện thoại">
                                 @error('phone')
                                 <div class="alert alert-danger">{{ $message }}</div>

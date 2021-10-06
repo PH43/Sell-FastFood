@@ -18,3 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('admin/product/auto_complete_search', 'Api\ProductController@auto_complete_search');
+
+Route::get('admin/user/auto_complete_search_user', 'Api\ApiUserController@auto_complete_search_user');

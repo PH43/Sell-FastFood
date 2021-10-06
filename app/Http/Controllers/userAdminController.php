@@ -19,8 +19,9 @@ class userAdminController extends Controller
     }
 
     public function index(){
+        $roles = $this->role->get();
         $users = $this->user->latest()->paginate(5);
-        return view('admin.user.index', compact('users'));
+        return view('admin.user.index', compact('users','roles'));
     }
 
     public function create(){
@@ -60,7 +61,7 @@ class userAdminController extends Controller
     public function update($id, Request $request){
 
         $request->validate([
-            'name' => ['required', 'min:2', 'max:20', Rule::unique('users')->ignore($id),],
+            'name' => ['required', 'min:2', 'max:20'],
             'email' => ['required',Rule::unique('users')->ignore($id),],
             'role_id' => 'required',
             'address' => 'required',
@@ -68,7 +69,6 @@ class userAdminController extends Controller
         ],
             [
                 'name.required' => 'Tên không được trống',
-                'name.unique' => 'Tên đã có',
                 'name.max' => 'Tên không được dài hơn 20 ký tự',
                 'name.min' => 'Tên không được ngắn hơn 2 ký tự',
                 'email.required' => 'Email không được trống',
@@ -100,4 +100,26 @@ class userAdminController extends Controller
             'massage' => 'success'
         ], 200);
     }
+
+    public function search(Request $request){
+        $roles = $this->role->get();
+        $value_search = $request->search;
+        $value_role_id = $request->role_id;
+
+        $query = $this->user->query();
+        if ($request->has('search') && !empty($request->search)){
+            $query->where('name', 'LIKE', '%' . $value_search . '%')
+                ->orwhere('email',  'LIKE', '%' . $value_search . '%');
+        }
+        if ( $request->has('role_id') && !empty($value_role_id)){
+            $query->whereHas('roles', function($q) use($value_role_id) {
+                $q->where('roles.id', $value_role_id);
+            });
+        }
+
+        $users = $query->paginate(5)->appends(['search' => $value_search, 'role_id' => $value_role_id]);
+        return view('admin.user.search',compact('users', 'roles','value_search','value_role_id'));
+    }
 }
+
+

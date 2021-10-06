@@ -67,7 +67,7 @@
                 var _token = $('input[name="_token"]').val();
                 $.ajax({
                     url:"{{ url('/admin/categories/autocomplete_search') }}",
-                    method:"POST",
+                    method:"GET",
                     data:{query:query, _token:_token},
                     success:function (data) {
                         $('#search_ajax').fadeIn();

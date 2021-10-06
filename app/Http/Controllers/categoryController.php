@@ -73,7 +73,7 @@ class categoryController extends Controller
 
     public function search(Request $request)
     {
-        $searches = $this->category->where('name', 'LIKE', "%$request->search%")->paginate(5);
+        $searches = $this->category->where('name', 'LIKE', "%$request->search%")->paginate(5)->appends(['search' => $request->search]);
         $value_search = $request->search;
         return view('admin.category.search', compact('searches', 'value_search'));
     }

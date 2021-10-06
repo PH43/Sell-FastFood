@@ -24,7 +24,7 @@ class AddUserAdminRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:users|max:20|min:2',
+            'name' => 'required|max:20|min:2',
             'email' => 'required|unique:users',
             'password' => 'required|max:20|min:4',
             'role_id' => 'required',
@@ -36,7 +36,6 @@ class AddUserAdminRequest extends FormRequest
     {
         return [
             'name.required' => 'Tên không được trống',
-            'name.unique' => 'Tên đã có',
             'name.max' => 'Tên không được dài hơn 20 ký tự',
             'name.min' => 'Tên không được ngắn hơn 2 ký tự',
             'email.required' => 'Email không được trống',
