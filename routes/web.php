@@ -10,11 +10,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//Phần client
 Route::get('/','HomeController@index');
 
 
+//Phần client
+
 // trang chu admin
+
+
 Route::get('/admin', 'AdminController@index');
 
 Route::get('/login_admin', [
@@ -36,7 +40,6 @@ Route::get('/post_register', [
     'as'=> 'admins.register',
     'uses' => 'AdminController@register'
 ]);
-
 
 // trang category admin
 Route::prefix('/admin/categories')->group(function () {
