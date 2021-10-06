@@ -16,7 +16,7 @@
                         <form method="post" action="{{ route('categories.store') }}">
                             @csrf
                             <div class="form-group">
-                                <label>Tên danh mục</label>
+                                <label>Tên danh mục</label><span style="color: red"> *</span>
                                 <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="Nhập tên danh mục">
                                 @error('name')
                                 <div class="alert alert-danger">{{ $message }}</div>

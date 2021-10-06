@@ -28,7 +28,7 @@
                 <a href="{{ route('categories.index') }}" class="nav-link">
                     <i class="nav-icon fas fa-th"></i>
                     <p>
-                        Danh mục
+                        Quản lý danh mục
                     </p>
                 </a>
             </li>
@@ -36,7 +36,7 @@
                 <a href="{{ route('products.index') }}" class="nav-link">
                     <i class="nav-icon fas fa-th"></i>
                     <p>
-                        Sản phẩm
+                       Quản lý sản phẩm
                     </p>
                 </a>
             </li>
@@ -44,7 +44,15 @@
                 <a href="{{ route('users.index') }}" class="nav-link">
                     <i class="nav-icon fas fa-th"></i>
                     <p>
-                        Tài khoản
+                        Quản lý tài khoản
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('roles.index') }}" class="nav-link">
+                    <i class="nav-icon fas fa-th"></i>
+                    <p>
+                        Quản lý phân quyền
                     </p>
                 </a>
             </li>

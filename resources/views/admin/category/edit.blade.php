@@ -16,7 +16,7 @@
                         <form method="post" action="{{ route('categories.update', ['id' => $category->id]) }}">
                             @csrf
                             <div class="form-group">
-                                <label>Tên danh mục</label>
+                                <label>Tên danh mục</label><span style="color: red"> *</span>
                                 <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
                                        value="{{ $category->name }}"
                                         placeholder="Nhập tên danh mục">

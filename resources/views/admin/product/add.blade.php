@@ -16,21 +16,21 @@
                         <form method="post" action="{{ route('products.store') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
-                                <label>Tên sản phẩm</label>
+                                <label>Tên sản phẩm</label><span style="color: red"> *</span>
                                 <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="Nhập tên danh mục">
                                 @error('name')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label>Giá</label>
+                                <label>Giá</label><span style="color: red"> *</span>
                                 <input type="text" class="form-control @error('price') is-invalid @enderror" id="auto_format_price" name="price" value="{{ old('price') }}" placeholder="Nhập tên danh mục">
                                 @error('price')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label >Chọn danh mục</label>
+                                <label >Chọn danh mục</label><span style="color: red"> *</span>
                                 <select class="form-control" name="category_id">
                                     @foreach( $categories as $category)
                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -38,21 +38,21 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label >Ảnh đại diện</label>
+                                <label >Ảnh đại diện</label><span style="color: red"> *</span>
                                 <input type="file" class="form-control-file @error('feature_image_path') is-invalid @enderror" name="feature_image_path">
                                 @error('feature_image_path')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label >Ảnh chi tiết</label>
+                                <label >Ảnh chi tiết</label><span style="color: red"> *</span>
                                 <input type="file" class="form-control-file @error('image_path') is-invalid @enderror" multiple name="image_path[]">
                                 @error('image_path')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label >Mô tả sản phẩm</label>
+                                <label >Mô tả sản phẩm</label><span style="color: red"> *</span>
                                 <textarea class="form-control tinymce_editor_content_product @error('contents') is-invalid @enderror" name="contents" rows="6"></textarea>
                                 @error('contents')
                                 <div class="alert alert-danger">{{ $message }}</div>

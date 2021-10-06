@@ -12,6 +12,7 @@
         .select2-selection__choice__display{
             color: white !important;
         }
+
     </style>
 </head>
 <body>
@@ -37,10 +38,12 @@
                             <form id="login-form" action="{{ route('admins.post_login') }}" method="post" role="form" style="display: block;">
                                 @csrf
                                 <div class="form-group">
-                                    <input type="email" name="email" id="username" tabindex="1" class="form-control" placeholder="email" value="">
+                                    <label for="" class="label_warning">Email</label><span style="color: red"> *</span>
+                                    <input type="email" name="email" id="username" tabindex="1" class="form-control" placeholder="email" value="{{ old('email') }}">
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Mật khẩu">
+                                    <label for="" class="label_warning">Mật khẩu</label><span style="color: red"> *</span>
+                                    <input type="password" name="password" id="password" tabindex="2" class="form-control" value="{{ old('password') }}" placeholder="Mật khẩu">
                                 </div>
                                 <div class="form-group">
                                     <div class="row">

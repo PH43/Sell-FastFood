@@ -34,40 +34,38 @@
                             <form id="register-form" action="{{ route('admins.register') }}" method="post" role="form" >
                                 @csrf
                                 <div class="form-group">
+                                    <label for="" class="label_warning">Tên</label><span style="color: red"> *</span>
                                     <input type="text"  name="name" id="username" tabindex="1" class="form-control @error('name') is-invalid @enderror" placeholder="Nhập tên" value="">
                                     @error('name')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
+                                    <label for="" class="label_warning">Email</label><span style="color: red"> *</span>
                                     <input type="email" name="email" id="email" tabindex="1" class="form-control @error('email') is-invalid @enderror" placeholder="Nhập email" value="">
                                     @error('email')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
+                                    <label for="" class="label_warning">Mật khẩu</label><span style="color: red"> *</span>
                                     <input type="password" name="password" id="password" tabindex="2" class="form-control @error('password') is-invalid @enderror" placeholder="Password">
                                     @error('password')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <select class="form-control select2_role @error('role_id') is-invalid @enderror" style="width: 520px;" name="role_id[]" multiple="multiple">
-                                        @foreach( $roles as $role)
-                                            <option value="{{ $role->id }}">{{ $role->name }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('role_id')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
+                                    <input type="hidden" name="role_id[]" value="5">
                                 </div>
                                 <div class="form-group">
+                                    <label for="" class="label_warning">Địa chỉ</label><span style="color: red"> *</span>
                                     <input type="text" name="address" id="username" tabindex="1" class="form-control @error('address') is-invalid @enderror" placeholder="Nhập địa chỉ" value="">
                                     @error('address')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
+                                    <label for="" class="label_warning">Số điện thoại</label><span style="color: red"> *</span>
                                     <input type="text" name="phone" id="username" tabindex="1" class="form-control @error('email') is-invalid @enderror" placeholder="Nhập số điện thoại" value="">
                                     @error('phone')
                                     <div class="alert alert-danger">{{ $message }}</div>

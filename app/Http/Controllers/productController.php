@@ -196,7 +196,8 @@ class productController extends Controller
             $query->where('category_id', $request->category_id);
         }
 
-        $products = $query->paginate(5);
+        $products = $query->paginate(5)->appends(['search' => $value_search, 'category_id' => $value_category_id]);
+
         return view('admin.product.search', compact('products', 'categories', 'value_search', 'value_category_id'));
 
     }

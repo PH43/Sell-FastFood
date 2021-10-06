@@ -16,21 +16,21 @@
                         <form method="post" action="{{ route('products.update', ['id' => $product->id]) }}" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
-                                <label>Tên sản phẩm</label>
+                                <label>Tên sản phẩm</label><span style="color: red"> *</span>
                                 <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $product->name }}" placeholder="Nhập tên danh mục">
                                 @error('name')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label>Giá</label>
+                                <label>Giá</label><span style="color: red"> *</span>
                                 <input type="text" class="form-control @error('price') is-invalid @enderror" id="auto_format_price" name="price" value="{{ $product->price }}" placeholder="Nhập tên danh mục">
                                 @error('price')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label >Chọn danh mục</label>
+                                <label >Chọn danh mục</label><span style="color: red"> *</span>
                                 <select class="form-control" name="category_id">
                                     @foreach( $categories as $category)
                                         <option
@@ -44,7 +44,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label >Ảnh đại diện</label>
+                                <label >Ảnh đại diện</label><span style="color: red"> *</span>
                                 <input type="file" class="form-control-file" name="feature_image_path">
                                 <div>
                                     <p style="margin-top: 10px">{{ $product->feature_image_name }}</p>
@@ -52,7 +52,7 @@
                                 </div>
                             </div>
                             <div class="form-group" >
-                                <label >Ảnh chi tiết</label>
+                                <label >Ảnh chi tiết</label><span style="color: red"> *</span>
                                 <input type="file" class="form-control-file" multiple name="image_path[]">
                                 <div style="display: flex">
                                 @foreach($product->images as $product_multiple_images)
@@ -65,7 +65,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label >Mô tả sản phẩm</label>
+                                <label >Mô tả sản phẩm</label><span style="color: red"> *</span>
                                 <textarea class="form-control tinymce_editor_content_product" name="contents" rows="6">{{ $product->content }}</textarea>
                             </div>
                             <button type="submit" class="btn btn-primary">Cập nhật</button>

@@ -21,11 +21,10 @@
                     </div>
                     <div class="col-md-12  m-1">
                         <form action="{{ url('/admin/user/search') }}" autocomplete="off" method="get">
-
                             <div style="display: flex; ">
                                 <div class="form-group" >
                                     <label>Nhập thông tin cần tìm </label>
-                                    <input type="text" class="form-control" style="width: 300px;" name="search" id="keywords"
+                                    <input type="text" class="form-control" style="width: 300px;" value="{{ $value_search }}" name="search" id="keywords"
                                            placeholder="Nhập tên hoặc email">
                                 </div>
                                 <div class="form-group" style="width: 170px; margin-left: 10px; margin-right: 10px">
@@ -34,6 +33,11 @@
                                         <option value="">Chọn vai trò</option>
                                         @foreach( $roles as $role)
                                             <option
+                                                <?php
+                                                    if ($value_role_id == $role->id){
+                                                        echo 'selected';
+                                                    }
+                                                ?>
                                                 value="{{  $role->id }}">{{  $role->name }}</option>
                                         @endforeach
                                     </select>
@@ -94,4 +98,8 @@
     <script src="{{ asset('js/confirm_delete_user.js') }}"></script>
     <script src="{{ asset('js/search_user.js') }}"></script>
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+    <script>
+
+    </script>
 @endsection
+
