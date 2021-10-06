@@ -105,11 +105,9 @@ class userAdminController extends Controller
         $roles = $this->role->get();
         $value_search = $request->search;
         $value_role_id = $request->role_id;
-
         $query = $this->user->query();
         if ($request->has('search') && !empty($request->search)){
-            $query->where('name', 'LIKE', '%' . $value_search . '%')
-                ->orwhere('email',  'LIKE', '%' . $value_search . '%');
+            $query->whereRaw(\DB::raw('(name LIKE  ? or email like ? )'),['%'.$value_search.'%' ,'%'.$value_search.'%']);
         }
         if ( $request->has('role_id') && !empty($value_role_id)){
             $query->whereHas('roles', function($q) use($value_role_id) {
