@@ -10,21 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//Phần client
 Route::get('/','HomeController@index');
+//Phần client
+
 // trang chu admin
-<<<<<<< HEAD
-Route::get('/test',function(){
-    return view('test');
-});
 Route::get('/admin', function () {
     return view('admin.home');
 });
-=======
-//Route::get('/admin', function () {
-//        return view('admin.home');
-//});
-
 Route::get('/admin', 'AdminController@index');
 
 Route::get('/login_admin', [
@@ -46,8 +39,6 @@ Route::post('/post_register', [
     'as'=> 'admins.register',
     'uses' => 'AdminController@register'
 ]);
-
->>>>>>> 489d8d09304ced9313774aaf5d6de7a4076f47c0
 // trang category admin
 Route::prefix('/admin/categories')->group(function () {
     Route::get('/',[

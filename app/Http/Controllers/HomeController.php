@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Slider;
 
 class HomeController extends Controller
 {
@@ -13,7 +14,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home.home');
+        //lay slide moi nhat
+        $sliders = Slider::get();
+        // echo dd($sliders);
+        return view('home.home',compact('sliders'));
     }
 
     /**
