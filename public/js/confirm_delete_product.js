@@ -33,7 +33,11 @@ function confirmDelete(){
                     }
                 },
                 error: function () {
-
+                    Swal.fire(
+                        'Thất bại!',
+                        'Không thể xóa sản phẩm đang có trong đơn hàng.',
+                        'warning'
+                    )
                 }
             });
 

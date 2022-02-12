@@ -1,6 +1,6 @@
 <html>
-<head>	
-	<meta charset="utf-8">
+<head>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -10,21 +10,21 @@
     <link href="{{asset('Eshopper/css/prettyPhoto.css')}}" rel="stylesheet">
     <link href="{{asset('Eshopper/css/price-range.css')}}" rel="stylesheet">
     <link href="{{asset('Eshopper/css/animate.css')}}" rel="stylesheet">
-	<link href="{{asset('Eshopper/css/main.css')}}" rel="stylesheet">
-	@yield('css')
-	<link rel="shortcut icon" href="{{asset('')}}Eshopper/images/ico/favicon.png">
+    <link href="{{asset('Eshopper/css/main.css')}}" rel="stylesheet">
+    @yield('css')
+    <link rel="shortcut icon" href="{{asset('')}}Eshopper/images/ico/favicon.png">
 </head>
-<body> 	
-  	@include('components.header')
-  	@include('components.slide')
-  	@yield('content')
-  	@include('components.footer')
-    <script src="{{asset('Eshopper/js/jquery.js')}}"></script>
-	<script src="{{asset('Eshopper/js/bootstrap.min.js')}}"></script>
-	<script src="{{asset('Eshopper/js/jquery.scrollUp.min.js')}}"></script>
-	<script src="{{asset('Eshopper/js/price-range.js')}}"></script>
-    <script src="{{asset('Eshopper/js/jquery.prettyPhoto.js')}}"></script>
-    <script src="{{asset('Eshopper/js/main.js')}}"></script>
-    @yield('js')
+<body>
+@yield('header')
+@yield('content')
+@include('components.footer')
+<script src="{{asset('Eshopper/js/jquery.js')}}"></script>
+<script src="{{asset('Eshopper/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('Eshopper/js/jquery.scrollUp.min.js')}}"></script>
+<script src="{{asset('Eshopper/js/price-range.js')}}"></script>
+<script src="{{asset('Eshopper/js/jquery.prettyPhoto.js')}}"></script>
+<script src="{{asset('Eshopper/js/main.js')}}"></script>
+<script src="{{asset('js/search_product_home.js')}}"></script>
+@yield('js')
 </body>
 </html>

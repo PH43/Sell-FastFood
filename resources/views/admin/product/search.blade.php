@@ -72,10 +72,19 @@
                                              alt=""></td>
                                     <td>{{ number_format($product->price) }} VNĐ</td>
                                     <td>{{ $product->category->name }}</td>
-                                    <td><a href="{{ route( 'products.edit', ['id' => $product->id]) }}"
-                                           class="btn btn-secondary">Cập nhật</a>
-                                        <a href="{{ route('products.delete', ['id' => $product->id]) }}"
-                                           class="btn btn-danger">Xóa</a></td>
+                                    <td>
+                                        @can('product-edit')
+                                            <a href="{{ route( 'products.edit', ['id' => $product->id]) }}"
+                                               class="btn btn-secondary">Cập nhật
+                                            </a>
+                                        @endcan
+                                        @can('product-delete')
+                                            <a href=""
+                                               data-url="{{ route('products.delete', ['id' => $product->id]) }}"
+                                               class="btn btn-danger confirm_delete_product">Xóa
+                                            </a>
+                                        @endcan
+                                    </td>
                                 </tr>
                             @endforeach
 
@@ -94,4 +103,6 @@
 @section('js')
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('js/search_product.js') }}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('js/confirm_delete_product.js') }}"></script>
 @endsection

@@ -1,0 +1,11 @@
+.alert-danger, .alert-danger>a, .alert-error, .alert-error>a, .bg-danger, .bg-danger>a {
+    color: #d32535!important;
+    font-size: 13px;
+    padding-left: 90px;
+}
+.alert-danger, .alert-error, .bg-danger {
+    background-color: #f4f6f9!important;
+}
+.alert-danger, .alert-error {
+    border-color: #f4f6f9;
+}

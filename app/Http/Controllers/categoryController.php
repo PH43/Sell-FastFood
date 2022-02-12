@@ -7,6 +7,8 @@ use App\Http\Requests\AddCategoryRequest;
 use App\Http\Requests\EditCategoryRequest;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Symfony\Component\HttpFoundation\Response;
+use Gate;
 
 class categoryController extends Controller
 {
@@ -35,7 +37,7 @@ class categoryController extends Controller
                 'name' => $request->name
             ]
         );
-        return redirect()->route('categories.index');
+        return redirect()->route('categories.index')->with('message_success', 'Tạo danh mục thành công');
     }
 
     public function edit($id)
@@ -59,16 +61,27 @@ class categoryController extends Controller
         $this->category->find($id)->update([
             'name' => $request->name
         ]);
-        return redirect()->route('categories.index');
+        return redirect()->back()->with('message_success', 'Cập nhật danh mục thành công');
     }
 
     public function delete($id)
     {
-        $this->category->find($id)->delete();
-        return response()->json([
-            'code' => 200,
-            'message' => 'success'
-        ], 200);
+        $category = $this->category->find($id);
+        $abc = $category->products->first();
+
+        if (empty($abc)){
+            $this->category->find($id)->delete();
+            return response()->json([
+                'code' => 200,
+                'message' => 'success'
+            ], 200);
+        }else{
+            return response()->json([
+                'massage' => 'fail',
+                'code' => 500
+            ],500);
+        }
+
     }
 
     public function search(Request $request)

@@ -23,7 +23,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
                  with font-awesome or any other icon font library -->
-
+            @can('category-list')
             <li class="nav-item">
                 <a href="{{ route('categories.index') }}" class="nav-link">
                     <i class="nav-icon fas fa-th"></i>
@@ -32,6 +32,8 @@
                     </p>
                 </a>
             </li>
+            @endcan
+            @can('product-list')
             <li class="nav-item">
                 <a href="{{ route('products.index') }}" class="nav-link">
                     <i class="nav-icon fas fa-th"></i>
@@ -40,6 +42,8 @@
                     </p>
                 </a>
             </li>
+            @endcan
+            @can('user-list')
             <li class="nav-item">
                 <a href="{{ route('users.index') }}" class="nav-link">
                     <i class="nav-icon fas fa-th"></i>
@@ -48,6 +52,8 @@
                     </p>
                 </a>
             </li>
+            @endcan
+            @can('role-list')
             <li class="nav-item">
                 <a href="{{ route('roles.index') }}" class="nav-link">
                     <i class="nav-icon fas fa-th"></i>
@@ -56,6 +62,27 @@
                     </p>
                 </a>
             </li>
+            @endcan
+            @can('order-list')
+            <li class="nav-item">
+                <a href="{{ route('orders.index') }}" class="nav-link">
+                    <i class="nav-icon fas fa-th"></i>
+                    <p>
+                        Quản lý đơn đặt hàng
+                    </p>
+                </a>
+            </li>
+            @endcan
+            @can('comment-list')
+            <li class="nav-item">
+                <a href="{{ route('comments.index') }}" class="nav-link">
+                    <i class="nav-icon fas fa-th"></i>
+                    <p>
+                        Quản lý nhận xét
+                    </p>
+                </a>
+            </li>
+            @endcan
         </ul>
     </nav>
     <!-- /.sidebar-menu -->

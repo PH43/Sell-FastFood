@@ -25,7 +25,7 @@ class AddProductRequest extends FormRequest
     {
         return [
             'name' => 'required|unique:products|max:100|min:2',
-            'price' => 'required|max:7|min:4',
+            'price' => 'required|numeric',
             'feature_image_path' => 'required',
             'image_path' => 'required',
             'contents' => 'required',
@@ -42,6 +42,7 @@ class AddProductRequest extends FormRequest
             'price.required' => 'Giá không được trống',
             'price.max' => 'Giá phải nhỏ hơn 10 triệu VNĐ ',
             'price.min' => 'Giá phải lớn hơn 1000 VNĐ',
+            'price.numeric' => 'Giá phải là số',
             'feature_image_path.required' => 'Ẩnh đại diện không được trống',
             'image_path.required' => 'Ẩnh chi tiết không được trống',
             'contents.required' => 'Mô tả không được trống',

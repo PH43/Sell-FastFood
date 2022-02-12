@@ -40,7 +40,7 @@ class userAdminController extends Controller
         ]);
         $roleId = $request->role_id;
         $user->roles()->attach($roleId);
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('message_success', 'Tạo tài khoản thành công');
     }
 
     public function edit($id){
@@ -79,26 +79,54 @@ class userAdminController extends Controller
                 'phone.numeric' => 'Số điện thoại phải là số',
             ]
         );
+        if ($request->password == null){
+            $this->user->find($id)->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'address' => $request->address,
+                'phone' => $request->phone,
+            ]);
+            $user = $this->user->find($id);
+            $roleId = $request->role_id;
+            $user->roles()->sync($roleId);
+            return redirect()->back()->with('message_success', 'Cập nhật tài khoản thành công');
+        }else{
+            $this->user->find($id)->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'address' => $request->address,
+                'phone' => $request->phone,
+            ]);
+            $user = $this->user->find($id);
+            $roleId = $request->role_id;
+            $user->roles()->sync($roleId);
+            return redirect()->back()->with('message_success', 'Cập nhật tài khoản thành công');
+        }
 
-        $this->user->find($id)->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'address' => $request->address,
-            'phone' => $request->phone,
-        ]);
-        $user = $this->user->find($id);
-        $roleId = $request->role_id;
-        $user->roles()->sync($roleId);
-        return redirect()->route('users.index');
     }
 
     public function delete($id){
-        $this->user->find($id)->delete();
-        return response()->json([
-            'code' => 200,
-            'massage' => 'success'
-        ], 200);
+
+         $user = $this->user->find($id);
+         $user_login = auth()->user()->id;
+//         $role = $user->roles;
+//         $abc =  $role->where('name','Admin')->first();
+
+         if ($user->id == $user_login){
+             return response()->json([
+                 'massage' => 'fail',
+                 'code' => 500
+             ],500);
+         }else{
+             $this->user->find($id)->delete();
+             return response()->json([
+                 'code' => 200,
+                 'massage' => 'success'
+             ], 200);
+         }
+
+
     }
 
     public function search(Request $request){
@@ -108,8 +136,7 @@ class userAdminController extends Controller
 
         $query = $this->user->query();
         if ($request->has('search') && !empty($request->search)){
-            $query->where('name', 'LIKE', '%' . $value_search . '%')
-                ->orwhere('email',  'LIKE', '%' . $value_search . '%');
+            $query->whereRaw(\DB::raw('(name LIKE  ? or email like ? )'),['%'.$value_search.'%' ,'%'.$value_search.'%']);
         }
         if ( $request->has('role_id') && !empty($value_role_id)){
             $query->whereHas('roles', function($q) use($value_role_id) {

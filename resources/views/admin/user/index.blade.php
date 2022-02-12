@@ -16,16 +16,19 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12">
-                        <a href="{{ route('users.create') }}" class="btn btn-success float-right m-1">Thêm</a>
-                    </div>
+                    @can('user-add')
+                        <div class="col-md-12">
+                            <a href="{{ route('users.create') }}" class="btn btn-success float-right m-1">Thêm</a>
+                        </div>
+                    @endcan
                     <div class="col-md-12  m-1">
                         <form action="{{ url('/admin/user/search') }}" autocomplete="off" method="get">
 
                             <div style="display: flex; ">
-                                <div class="form-group" >
+                                <div class="form-group">
                                     <label>Nhập thông tin cần tìm </label>
-                                    <input type="text" class="form-control" style="width: 300px;" name="search" id="keywords"
+                                    <input type="text" class="form-control" style="width: 300px;" name="search"
+                                           id="keywords"
                                            placeholder="Nhập tên hoặc email">
                                 </div>
                                 <div class="form-group" style="width: 170px; margin-left: 10px; margin-right: 10px">
@@ -46,6 +49,9 @@
                         </form>
                     </div>
                     <div class="col-md-12">
+                        @if(session()->has('message_success'))
+                            <p style="color: green">{{ session()->get('message_success') }}</p>
+                        @endif
                         <table class="table">
                             <thead>
                             <tr>
@@ -68,11 +74,18 @@
                                             {{ $roleName->name.',' }}
                                         @endforeach
                                     </td>
-                                    <td><a href="{{ route('users.edit', ['id' => $user->id]) }}"
-                                           class="btn btn-secondary">Cập nhật</a>
-                                        <a href=""
-                                           data-url="{{ route('users.delete', ['id' => $user->id]) }}"
-                                           class="btn btn-danger confirm_delete_user">Xóa</a>
+                                    <td>
+                                        @can('user-edit')
+                                            <a href="{{ route('users.edit', ['id' => $user->id]) }}"
+                                               class="btn btn-secondary">Cập nhật
+                                            </a>
+                                        @endcan
+                                        @can('user-delete')
+                                            <a href=""
+                                               data-url="{{ route('users.delete', ['id' => $user->id]) }}"
+                                               class="btn btn-danger confirm_delete_user">Xóa
+                                            </a>
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach

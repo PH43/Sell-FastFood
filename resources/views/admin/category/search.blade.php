@@ -16,10 +16,19 @@
                         <a href="{{ route('categories.create') }}" class="btn btn-success float-right m-1">Thêm</a>
                     </div>
                     <div class="col-md-12  m-1">
-                        <form action="{{ route('categories.search') }}" autocomplete="off" method="post">
-                            @csrf
-                            <input type="text" style="width: 300px" value="{{ $value_search }}" name="search" id="keywords" placeholder="Nhập tên danh mục cần tìm">
-                            <input type="submit" class="btn btn-info" value="Tìm kiếm">
+                        <form action="{{ url('/admin/categories/search') }}" autocomplete="off" method="get">
+                            <div style="display: flex; ">
+                                <div class="form-group">
+                                    <label>Nhập tên</label>
+                                    <input type="text" class="form-control" style="width: 300px;" name="search"
+                                           id="keywords"
+                                           value="{{ $value_search }}"
+                                           placeholder="Nhập tên danh mục cần tìm">
+                                </div>
+                                <div class="form-group" style="padding-top: 32px">
+                                    <input type="submit" class="btn btn-info" value="Tìm kiếm">
+                                </div>
+                            </div>
                             <div id="search_ajax"></div>
                         </form>
                     </div>
@@ -38,10 +47,17 @@
                                 <tr>
                                     <th scope="row">{{ $search->id }}</th>
                                     <td>{{ $search->name }}</td>
-                                    <td><a href="{{ route('categories.edit', ['id' => $search->id]) }}"
-                                           class="btn btn-secondary">Cập nhật</a>
-                                        <a href="{{ route('categories.delete', ['id' => $search->id]) }}"
-                                           class="btn btn-danger">Xóa</a></td>
+                                    <td>
+                                        @can('category-edit')
+                                            <a href="{{ route('categories.edit', ['id' => $search->id]) }}"
+                                               class="btn btn-secondary">Cập nhật</a>
+                                        @endcan
+                                        @can('category-delete')
+                                            <a href=""
+                                               data-url="{{ route('categories.delete', ['id' => $search->id]) }}"
+                                               class="btn btn-danger confirm_delete">Xóa</a>
+                                        @endcan
+                                    </td>
                                 </tr>
                             @endforeach
 
@@ -59,30 +75,8 @@
 @endsection
 @section('js')
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
-
-
-    <script type="text/javascript">
-        $('#keywords').keyup(function () {
-            var query = $(this).val();
-            if (query != ''){
-                var _token = $('input[name="_token"]').val();
-                $.ajax({
-                    url:"{{ url('/admin/categories/autocomplete_search') }}",
-                    method:"GET",
-                    data:{query:query, _token:_token},
-                    success:function (data) {
-                        $('#search_ajax').fadeIn();
-                        $('#search_ajax').html(data);
-                    }
-                });
-            }else{
-                $('#search_ajax').fadeOut();
-            }
-        });
-        $(document).on('click', '.search_ajax_category_li', function () {
-            $('#keywords').val($(this).text());
-            $('#search_ajax').fadeOut();
-        });
-    </script>
+    <script src="{{ asset('js/search_category.js') }}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('js/confirm_delete_category.js') }}"></script>
 @endsection
 
