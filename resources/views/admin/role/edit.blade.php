@@ -13,17 +13,20 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <form action="">
+                    <form action="{{ route('roles.update', ['id' => $role->id]) }}" method="post">
+                        @csrf
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Tên vai trò</label><span style="color: red"> *</span>
                                 <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
-                                       value="{{ $role->name }}" placeholder="Nhập tên danh mục">
+                                       value="{{ $role->name }}" placeholder="Nhập tên quyền">
                                 @error('name')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-
+                            @if(session()->has('message_role'))
+                                <p style="color: green">{{ session()->get('message_role') }}</p>
+                            @endif
                         </div>
                         <div class="col-md-12">
                             <div class="col-md-12">
@@ -32,7 +35,7 @@
                                         <div class="card mb-3" style="width: 500px ; margin-right: 20px">
                                             <div class="card-header">
                                                 <label for="">
-                                                    <input type="checkbox">
+                                                    <input type="checkbox" class="checkbox_parent">
                                                     {{ $permission->name }}
                                                 </label>
                                             </div>
@@ -43,7 +46,18 @@
                                                     <div class="card-body text-dark col-md-5" style="margin-left: 15px">
                                                         <h5 class="card-title">
                                                             <label for="">
-                                                                <input type="checkbox" name="permission_id[]" value="{{$permission_childrent->id}}">
+                                                                <input type="checkbox" name="permission_id[]"
+                                                                       class="checkbox_childrent"
+                                                                       <?php
+                                                                       if (!empty($permissions_checked)){
+                                                                           foreach ($permissions_checked as $iteam){
+                                                                               if ($iteam->id == $permission_childrent->id){
+                                                                                   echo 'checked';
+                                                                               }
+                                                                           }
+                                                                       }
+                                                                       ?>
+                                                                       value="{{$permission_childrent->id}}">
                                                             </label>
                                                             {{$permission_childrent->name}}
                                                         </h5>
@@ -66,4 +80,7 @@
         </div>
     </div>
 
+@endsection
+@section('js')
+    <script src="{{ asset('js/checkbox_role.js') }}"></script>
 @endsection

@@ -57,7 +57,7 @@ class AdminController extends Controller
         ])){
             return redirect()->to('admin');
         }else{
-            return redirect()->back()->with('message', 'Email hoặc mật khẩu không đúng');
+            return redirect()->back()->with('message', 'Email hoặc mật khẩu không đúng')->withInput();
         }
     }
 

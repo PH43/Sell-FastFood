@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Comment;
 use App\Http\Requests\AddProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Product;
@@ -14,13 +15,14 @@ use Illuminate\Validation\Rule;
 
 class productController extends Controller
 {
-    private $category, $product, $productImage;
+    private $category, $product, $productImage, $comment;
 
-    public function __construct(Category $category, Product $product, ProductImage $productImage)
+    public function __construct(Category $category, Product $product, ProductImage $productImage, Comment $comment)
     {
         $this->category = $category;
         $this->product = $product;
         $this->productImage = $productImage;
+        $this->comment = $comment;
     }
 
     public function index()
@@ -89,7 +91,7 @@ class productController extends Controller
             }
         }
 
-        return redirect()->route('products.index');
+        return redirect()->route('products.index')->with('message_success', 'Tạo sản phẩm thành công');
     }
 
     public function edit($id)
@@ -103,18 +105,19 @@ class productController extends Controller
     {
 
         $request->validate([
-            'name' => ['required', 'min:2', 'max:20', Rule::unique('products')->ignore($id),],
-            'price' => 'required|max:7|min:4',
+            'name' => ['required', 'min:3', 'max:100', Rule::unique('products')->ignore($id),],
+            'price' => ['required', 'numeric',],
             'contents' => 'required',
         ],
             [
-                'name.required' => 'Tên danh mục không được trống',
-                'name.unique' => 'Tên danh mục không trùng',
-                'name.max' => 'Tên danh mục không được dài hơn 20 ký tự',
-                'name.min' => 'Tên danh mục không được ngắn hơn 2 ký tự',
+                'name.required' => 'Tên sản phẩm không được trống',
+                'name.unique' => 'Tên sản phẩm không trùng',
+                'name.max' => 'Tên sản phẩm không được dài hơn 100 ký tự',
+                'name.min' => 'Tên sản phẩm không được ngắn hơn 2 ký tự',
                 'price.required' => 'Giá không được trống',
-                'price.max' => 'Giá phải nhỏ hơn 10 triệu VNĐ ',
-                'price.min' => 'Giá phải lớn hơn 1000 VNĐ',
+                'price.max' => 'Giá không được dài hơn 50 ký tự',
+                'price.numeric' => 'Giá phải là số',
+                'price.min' => 'Giá không được ngắn hơn 2 ký tự',
                 'contents.required' => 'Mô tả không được trống',
             ]
         );
@@ -171,16 +174,28 @@ class productController extends Controller
             }
         }
 
-        return redirect()->route('products.index');
+        return redirect()->back()->with('message_success', 'Cập nhật sản phẩm thành công');
     }
 
     public function delete($id)
     {
-        $this->product->find($id)->delete();
-        return response()->json([
-            'code' => 200,
-            'message' => 'success'
-        ], 200);
+        $products =  $this->product->find($id);
+        $abc = $products->oder_details->first();
+
+        if (empty($abc)){
+            $this->product->find($id)->delete();
+            $this->comment->where('product_id', $id)->delete();
+            return response()->json([
+                'code' => 200,
+                'message' => 'success'
+            ], 200);
+        }else{
+            return response()->json([
+                'massage' => 'fail',
+                'code' => 500
+            ],500);
+        }
+
     }
 
     public function search(Request $request)

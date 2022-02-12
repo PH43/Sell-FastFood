@@ -16,13 +16,33 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
+                    @can('category-add')
                     <div class="col-md-12">
                         <a href="{{ route('categories.create') }}" class="btn btn-success float-right m-1">Thêm</a>
                     </div>
-                    @include('admin.partials.search_category')
-
+                    @endcan
+{{--                    @include('admin.partials.search_category')--}}
+                        <div class="col-md-12  m-1">
+                            <form action="{{ url('/admin/categories/search') }}" autocomplete="off" method="get">
+                                <div style="display: flex; ">
+                                    <div class="form-group">
+                                        <label>Nhập tên</label>
+                                        <input type="text" class="form-control" style="width: 300px;" name="search"
+                                               id="keywords"
+                                               placeholder="Nhập tên danh mục cần tìm">
+                                    </div>
+                                    <div class="form-group" style="padding-top: 32px">
+                                        <input type="submit" class="btn btn-info" value="Tìm kiếm">
+                                    </div>
+                                </div>
+                                <div id="search_ajax"></div>
+                            </form>
+                        </div>
 
                     <div class="col-md-12">
+                        @if(session()->has('message_success'))
+                            <p style="color: green">{{ session()->get('message_success') }}</p>
+                        @endif
                         <table class="table">
                             <thead>
                             <tr>
@@ -37,11 +57,17 @@
                                 <tr>
                                     <th scope="row">{{ $category->id }}</th>
                                     <td>{{ $category->name }}</td>
-                                    <td><a href="{{ route('categories.edit', ['id' => $category->id]) }}"
-                                           class="btn btn-secondary">Cập nhật</a>
-                                    <a href=""
-                                       data-url="{{ route('categories.delete', ['id' => $category->id]) }}"
-                                           class="btn btn-danger confirm_delete">Xóa</a></td>
+                                    <td>
+                                        @can('category-edit')
+                                            <a href="{{ route('categories.edit', ['id' => $category->id]) }}"
+                                               class="btn btn-secondary">Cập nhật</a>
+                                        @endcan
+                                        @can('category-delete')
+                                            <a href=""
+                                               data-url="{{ route('categories.delete', ['id' => $category->id]) }}"
+                                               class="btn btn-danger confirm_delete">Xóa</a>
+                                        @endcan
+                                    </td>
                                 </tr>
                             @endforeach
 
@@ -60,29 +86,7 @@
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('js/confirm_delete_category.js') }}"></script>
-    <script type="text/javascript">
-      $('#keywords').keyup(function () {
-            var query = $(this).val();
-            if (query != ''){
-                var _token = $('input[name="_token"]').val();
-                $.ajax({
-                    url:"{{ url('/admin/categories/autocomplete_search') }}",
-                    method:"GET",
-                    data:{query:query, _token:_token},
-                    success:function (data) {
-                        $('#search_ajax').fadeIn();
-                        $('#search_ajax').html(data);
-                    }
-                });
-            }else{
-                $('#search_ajax').fadeOut();
-            }
-        });
-        $(document).on('click', '.search_ajax_category_li', function () {
-            $('#keywords').val($(this).text());
-            $('#search_ajax').fadeOut();
-        });
-    </script>
+    <script src="{{ asset('js/search_category.js') }}"></script>
 @endsection
 
 

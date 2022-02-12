@@ -19,6 +19,9 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-6">
+                        @if(session()->has('message_success'))
+                            <p style="color: green">{{ session()->get('message_success') }}</p>
+                        @endif
                         <form method="post" action="{{ route('users.update', ['id' => $user->id]) }}">
                             @csrf
                             <div class="form-group">
@@ -52,13 +55,16 @@
                             @else
                                 <div class="form-group">
                                     <label>Chọn vai trò</label><span style="color: red"> *</span>
-                                    <select class="form-control select2_role" name="role_id[]" multiple="multiple">
+                                    <select class="form-control select2_role @error('role_id') is-invalid @enderror" name="role_id[]" multiple="multiple">
                                         @foreach( $roles as $role)
                                             <option
                                                 {{ $role_of_user->contains('id', $role->id) ? 'selected' : '' }}
                                                 value="{{ $role->id }}">{{ $role->name }}</option>
                                         @endforeach
                                     </select>
+                                    @error('role_id')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             @endif
 

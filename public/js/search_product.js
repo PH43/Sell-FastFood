@@ -11,7 +11,9 @@ if (query != ''){
             var html = '<ul id="search_ajax" class="dropdown-menu" style="display: block; position: absolute; margin-left: 15px;">';
             console.table(response);
             $.each(response, function (index, value) {
-                html += '<li class="search_ajax_product_li" ><a href="#" style="color: black">'+value.name+'</a></li>';
+                html += '<li class="search_ajax_product_li" >' +
+                    '<img style="width:30px;height:30px" src="http://localhost:8000'+value.feature_image_path+'" alt="">' +
+                    '<a href="http://localhost:8000/admin/products/search?search='+value.name+'&category_id=" style="color: black">'+value.name+'</a></li>';
             })
                 html += '</ul>';
             $('#search_ajax').fadeIn();

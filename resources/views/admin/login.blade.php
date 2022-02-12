@@ -45,15 +45,15 @@
                                     <label for="" class="label_warning">Mật khẩu</label><span style="color: red"> *</span>
                                     <input type="password" name="password" id="password" tabindex="2" class="form-control" value="{{ old('password') }}" placeholder="Mật khẩu">
                                 </div>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="text-center">
-                                                <a href="{{ route('admins.show_form_register') }}" tabindex="5" class="forgot-password">Đăng ký</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+{{--                                <div class="form-group">--}}
+{{--                                    <div class="row">--}}
+{{--                                        <div class="col-lg-12">--}}
+{{--                                            <div class="text-center">--}}
+{{--                                                <a href="{{ route('admins.show_form_register') }}" tabindex="5" class="forgot-password">Đăng ký</a>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-sm-6 col-sm-offset-3">

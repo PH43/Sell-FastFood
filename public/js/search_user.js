@@ -11,7 +11,8 @@ $(document).ready(function () {
                     var html = '<ul id="search_ajax" class="dropdown-menu" style="display: block; position: absolute; margin-left: 15px;">';
                     console.table(response);
                     $.each(response, function (index, value) {
-                        html += '<li class="search_ajax_user_li" ><a href="#" style="color: black">'+value.name+'</a></li>';
+                        html += '<li class="search_ajax_user_li" >' +
+                            '<a href="http://localhost:8000/admin/user/search?search='+value.name+'&role_id=" style="color: black">'+value.name+'</a></li>';
                     })
                     html += '</ul>';
                     $('#search_ajax').fadeIn();

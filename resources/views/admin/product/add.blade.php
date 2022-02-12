@@ -17,14 +17,14 @@
                             @csrf
                             <div class="form-group">
                                 <label>Tên sản phẩm</label><span style="color: red"> *</span>
-                                <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="Nhập tên danh mục">
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="Nhập tên sản phẩm">
                                 @error('name')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group">
                                 <label>Giá</label><span style="color: red"> *</span>
-                                <input type="text" class="form-control @error('price') is-invalid @enderror" id="auto_format_price" name="price" value="{{ old('price') }}" placeholder="Nhập tên danh mục">
+                                <input type="text" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ old('price') }}" placeholder="Nhập giá">
                                 @error('price')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror

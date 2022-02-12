@@ -17,4 +17,8 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function oder_details(){
+        return $this->hasMany(OrderDetail::class, 'product_id');
+    }
+
 }

@@ -13,6 +13,9 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-6">
+                        @if(session()->has('message_success'))
+                            <p style="color: green">{{ session()->get('message_success') }}</p>
+                        @endif
                         <form method="post" action="{{ route('categories.update', ['id' => $category->id]) }}">
                             @csrf
                             <div class="form-group">

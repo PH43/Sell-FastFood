@@ -1,40 +1,64 @@
 <section id="slider"><!--slider-->
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12">
-					<div id="slider-carousel" class="carousel slide" data-ride="carousel">
-						<ol class="carousel-indicators">
-							<li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
-							<li data-target="#slider-carousel" data-slide-to="1"></li>
-							<li data-target="#slider-carousel" data-slide-to="2"></li>
-						</ol>
-						
-						<div class="carousel-inner">
-							@foreach($sliders as $key => $slider)
-							<div class="item {{$key == 0?'active':''}}">
-								<div class="col-sm-6">
-									<h1><span>Green</span>Fast</h1>
-									<h2>{{$slider->name}}</h2>
-									<p>{{$slider->description}}</p>
-									<button type="button" class="btn btn-default get">Get it now</button>
-								</div>
-								<div class="col-sm-6">
-									<img src="{{$slider->image_path}}" class="girl img-responsive" alt="" />
-									<img src="Eshopper/images/home/pricing.png"  class="pricing" alt="" />
-								</div>
-							</div>
-							@endforeach
-						</div>
-						
-						<a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
-							<i class="fa fa-angle-left"></i>
-						</a>
-						<a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
-							<i class="fa fa-angle-right"></i>
-						</a>
-					</div>
-					
-				</div>
-			</div>
-		</div>
-	</section><!--/slider-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="slider-carousel" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#slider-carousel" data-slide-to="1"></li>
+                        <li data-target="#slider-carousel" data-slide-to="2"></li>
+                    </ol>
+
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <div class="col-sm-6">
+                                <h1><span>FAST</span>-FOOD</h1>
+                                <h2>FAST FOOD</h2>
+                                <p>Hương vị thơm ngon</p>
+                                <p>Giá thành hợp lý</p>
+                                <p>Giao hàng nhanh chóng</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <img src="{{ asset('Eshopper/images/home/bergerga.png') }}" class="girl img-responsive" alt="" />
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="col-sm-6">
+                                <h1><span>FAST</span>-FOOD</h1>
+                                <h2>FAST FOOD</h2>
+                                <p>Hương vị thơm ngon</p>
+                                <p>Giá thành hợp lý</p>
+                                <p>Giao hàng nhanh chóng</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <img src="{{ asset('Eshopper/images/home/bergerga.png') }}" class="girl img-responsive" alt="" />
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <div class="col-sm-6">
+                                <h1><span>FAST</span>-FOOD</h1>
+                                <h2>FAST FOOD</h2>
+                                <p>Hương vị thơm ngon</p>
+                                <p>Giá thành hợp lý</p>
+                                <p>Giao hàng nhanh chóng</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <img src="{{ asset('Eshopper/images/home/bergerga.png') }}" class="girl img-responsive" alt="" />
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section><!--/slider-->

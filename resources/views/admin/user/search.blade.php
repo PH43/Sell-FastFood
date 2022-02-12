@@ -72,11 +72,18 @@
                                             {{ $roleName->name.',' }}
                                         @endforeach
                                     </td>
-                                    <td><a href="{{ route('users.edit', ['id' => $user->id]) }}"
-                                           class="btn btn-secondary">Cập nhật</a>
-                                        <a href=""
-                                           data-url="{{ route('users.delete', ['id' => $user->id]) }}"
-                                           class="btn btn-danger confirm_delete_user">Xóa</a>
+                                    <td>
+                                        @can('user-edit')
+                                            <a href="{{ route('users.edit', ['id' => $user->id]) }}"
+                                               class="btn btn-secondary">Cập nhật
+                                            </a>
+                                        @endcan
+                                        @can('user-delete')
+                                            <a href=""
+                                               data-url="{{ route('users.delete', ['id' => $user->id]) }}"
+                                               class="btn btn-danger confirm_delete_user">Xóa
+                                            </a>
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach

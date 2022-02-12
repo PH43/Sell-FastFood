@@ -33,7 +33,11 @@ function confirmDelete(){
                     }
                 },
                 error: function () {
-
+                    Swal.fire(
+                        'Thất bại!',
+                        'Bạn không thể xóa danh mục chứa sản phẩm.',
+                        'warning'
+                    )
                 }
             });
 

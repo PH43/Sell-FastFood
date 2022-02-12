@@ -33,7 +33,11 @@ function confirmDelete(){
                     }
                 },
                 error: function () {
-
+                    Swal.fire(
+                        'Thất bại!',
+                        'Không thể xóa tài khoản bản thân.',
+                        'warning'
+                    )
                 }
             });
 

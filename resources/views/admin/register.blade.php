@@ -35,14 +35,14 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="" class="label_warning">Tên</label><span style="color: red"> *</span>
-                                    <input type="text"  name="name" id="username" tabindex="1" class="form-control @error('name') is-invalid @enderror" placeholder="Nhập tên" value="">
+                                    <input type="text"  name="name" id="username" tabindex="1" class="form-control @error('name') is-invalid @enderror" placeholder="Nhập tên" value="{{ old('name') }}">
                                     @error('name')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="label_warning">Email</label><span style="color: red"> *</span>
-                                    <input type="email" name="email" id="email" tabindex="1" class="form-control @error('email') is-invalid @enderror" placeholder="Nhập email" value="">
+                                    <input type="email" name="email" id="email" tabindex="1" class="form-control @error('email') is-invalid @enderror" placeholder="Nhập email" value="{{ old('email') }}">
                                     @error('email')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
@@ -59,14 +59,14 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="label_warning">Địa chỉ</label><span style="color: red"> *</span>
-                                    <input type="text" name="address" id="username" tabindex="1" class="form-control @error('address') is-invalid @enderror" placeholder="Nhập địa chỉ" value="">
+                                    <input type="text" name="address" id="username" tabindex="1" class="form-control @error('address') is-invalid @enderror" placeholder="Nhập địa chỉ" value="{{ old('address') }}">
                                     @error('address')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="label_warning">Số điện thoại</label><span style="color: red"> *</span>
-                                    <input type="text" name="phone" id="username" tabindex="1" class="form-control @error('email') is-invalid @enderror" placeholder="Nhập số điện thoại" value="">
+                                    <input type="text" name="phone" id="username" tabindex="1" class="form-control @error('phone') is-invalid @enderror" placeholder="Nhập số điện thoại" value="{{ old('phone') }}">
                                     @error('phone')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
